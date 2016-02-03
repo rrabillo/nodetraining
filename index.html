@@ -1,0 +1,24 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+</head>
+<body>
+<h1>Yo</h1>
+<p> On teste express </p>
+<input id='inputval' type="text" value="dsf"/>
+<button>message</button>
+<script>
+$(document).ready(function(){
+		var socket = io();
+		var btn = document.getElementsByTagName('button')[0];
+		btn.addEventListener('click', function(){
+			socket.emit('msg', $('#inputval').val());
+		});
+		socket.on('newmessage', function(msg){
+			$('p').append('<li>'+ msg + '</li>');
+		});
+});
+</script>
+</body>
+</html>
